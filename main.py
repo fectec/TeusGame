@@ -19,9 +19,9 @@ BG = pygame.image.load(os.path.join("assets/other", "background.jpg"))
 class Protagonist:
 
     X_POS = 80
-    Y_POS = 310
+    Y_POS = 620
     X_POS_DUCK = 76
-    Y_POS_DUCK = 350
+    Y_POS_DUCK = 660
     JUMP_VEL = 8.5
     
     def __init__(self):
@@ -108,7 +108,7 @@ def main():
     pygame.display.set_icon(pygame.image.load(os.path.join("assets/other", "gameIcon.png")))
 
     global game_speed, x_pos_bg, y_pos_bg, points, obstacles
-    font = pygame.font.Font('freesansbold.ttf', 20)
+    font = pygame.font.Font(os.path.join("assets/other", "arcadeFont.ttf"), 20)
 
     run = True
     clock = pygame.time.Clock()
@@ -133,7 +133,7 @@ def main():
 
         text = font.render("Points: " + str(points), True, (0, 0, 0))
         textRect = text.get_rect()
-        textRect.center = (1000, 40)
+        textRect.center = (600, 35)
         SCREEN.blit(text, textRect)
 
     def background():
@@ -161,10 +161,11 @@ def main():
 
         userInput = pygame.key.get_pressed()
 
+        background()
+
         player.draw(SCREEN)
         player.update(userInput)
 
-        background()
         score()
         
         clock.tick(30)
