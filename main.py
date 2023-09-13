@@ -1,5 +1,6 @@
 import pygame
 import os
+
 pygame.init()
 
 # GLOBAL CONSTANTS
@@ -10,11 +11,10 @@ SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGTH))
 
 RUNNING = [pygame.image.load(os.path.join("assets/protagonist", "protagonistRun1.png")),
            pygame.image.load(os.path.join("assets/protagonist", "protagonistRun2.png"))]
-JUMPING = [pygame.image.load(os.path.join("assets/protagonist", "protagonistJump.png"))]
+JUMPING = pygame.image.load(os.path.join("assets/protagonist", "protagonistJump.png"))
 DUCKING = [pygame.image.load(os.path.join("assets/protagonist", "protagonistDuck1.png")),
            pygame.image.load(os.path.join("assets/protagonist", "protagonistDuck2.png"))]
-
-BG = pygame.image.load(os.path.join("assets/other", "background1.png"))
+BG = pygame.image.load(os.path.join("assets/other", "track.png"))
 
 class Protagonist:
 
@@ -40,7 +40,7 @@ class Protagonist:
         self.protagonist_rect.x = self.X_POS
         self.protagonist_rect.y = self.Y_POS
     
-    def update (self, userInput):
+    def update(self, userInput):
 
         if self.protagonist_duck:
             self.duck()
@@ -69,40 +69,40 @@ class Protagonist:
             self.protagonist_run = True
             self.protagonist_jump = False
             
-def duck (self):
+    def duck (self):
 
-    self.image = self.duck_image[self.step_index // 5]
-    self.protagonist_rect = self.image.get_rect()
-    self.protagonist_rect.x = self.X_POS
-    self.protagonist_rect.y = self.Y_POS_DUCK
-    self.step_index += 1
-    
-def run(self):
-
-    self.image = self.run_image[self.step_index // 5]
-    self.protagonist_rect = self.image.get_rect()
-    self.protagonist_rect.x = self.X_POS
-    self.protagonist_rect.y = self.Y_POS
-    self.step_index += 1
-    
-def jump (self):
-
-    self.image = self.jump_image
-
-    if self.protagonist_jump:
-        self.protagonist_rect.y -= self.jump_vel * 4
-        self.jump_vel -= 0.8
-
-    if self.jump_vel < -self.JUMP_VEL:
-        self.protagonist_jump = False
-        self.jump_vel = self.JUMP_VEL
+        self.image = self.duck_image[self.step_index // 5]
+        self.protagonist_rect = self.image.get_rect()
+        self.protagonist_rect.x = self.X_POS
+        self.protagonist_rect.y = self.Y_POS_DUCK
+        self.step_index += 1
         
-def draw(self, SCREEN):
-    
-    SCREEN.blit(self.image, (self.protagonist_rect.x, self.protagonist_rect.y))
+    def run(self):
+
+        self.image = self.run_image[self.step_index // 5]
+        self.protagonist_rect = self.image.get_rect()
+        self.protagonist_rect.x = self.X_POS
+        self.protagonist_rect.y = self.Y_POS
+        self.step_index += 1
+        
+    def jump (self):
+
+        self.image = self.jump_image
+
+        if self.protagonist_jump:
+            self.protagonist_rect.y -= self.jump_vel * 4
+            self.jump_vel -= 0.8
+
+        if self.jump_vel < -self.JUMP_VEL:
+            self.protagonist_jump = False
+            self.jump_vel = self.JUMP_VEL
+            
+    def draw(self, SCREEN):
+        
+        SCREEN.blit(self.image, (self.protagonist_rect.x, self.protagonist_rect.y))
 
 def main():
-
+    
     global game_speed, x_pos_bg, y_pos_bg, points, obstacles
     font = pygame.font.Font('freesansbold.ttf', 20)
 
@@ -120,6 +120,8 @@ def main():
 
     def score():
 
+        global points, game_speed
+
         points += 1
 
         if points % 100 == 0:
@@ -130,8 +132,9 @@ def main():
         textRect.center = (1000, 40)
         SCREEN.blit(text, textRect)
 
-
     def background():
+
+        global x_pos_bg, y_pos_bg
 
         image_width = BG.get_width()
 
@@ -151,14 +154,16 @@ def main():
                 run = False
 
         SCREEN.fill((255, 255, 255))
+
         userInput = pygame.key.get_pressed()
 
         player.draw(SCREEN)
         player.update(userInput)
 
         background()
-
         score()
         
         clock.tick(30)
         pygame.display.update()
+
+main()
