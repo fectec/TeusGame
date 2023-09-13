@@ -20,7 +20,8 @@ class Protagonist:
 
     X_POS = 80
     Y_POS = 310
-    Y_POS_DUCK = 340
+    X_POS_DUCK = 76
+    Y_POS_DUCK = 350
     JUMP_VEL = 8.5
     
     def __init__(self):
@@ -73,7 +74,7 @@ class Protagonist:
 
         self.image = self.duck_image[self.step_index // 5]
         self.protagonist_rect = self.image.get_rect()
-        self.protagonist_rect.x = self.X_POS
+        self.protagonist_rect.x = self.X_POS_DUCK
         self.protagonist_rect.y = self.Y_POS_DUCK
         self.step_index += 1
         
@@ -103,6 +104,9 @@ class Protagonist:
 
 def main():
     
+    pygame.display.set_caption('Teus Game')
+    pygame.display.set_icon(pygame.image.load(os.path.join("assets/icon", "gameIcon.png")))
+
     global game_speed, x_pos_bg, y_pos_bg, points, obstacles
     font = pygame.font.Font('freesansbold.ttf', 20)
 
