@@ -5,8 +5,8 @@ pygame.init()
 
 # GLOBAL CONSTANTS
 
-SCREEN_WIDTH = 1100
-SCREEN_HEIGTH = 600
+SCREEN_WIDTH = 1200
+SCREEN_HEIGTH = 762
 SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGTH))
 
 RUNNING = [pygame.image.load(os.path.join("assets/protagonist", "protagonistRun1.png")),
@@ -14,7 +14,7 @@ RUNNING = [pygame.image.load(os.path.join("assets/protagonist", "protagonistRun1
 JUMPING = pygame.image.load(os.path.join("assets/protagonist", "protagonistJump.png"))
 DUCKING = [pygame.image.load(os.path.join("assets/protagonist", "protagonistDuck1.png")),
            pygame.image.load(os.path.join("assets/protagonist", "protagonistDuck2.png"))]
-BG = pygame.image.load(os.path.join("assets/other", "track.png"))
+BG = pygame.image.load(os.path.join("assets/other", "background.jpg"))
 
 class Protagonist:
 
@@ -105,7 +105,7 @@ class Protagonist:
 def main():
     
     pygame.display.set_caption('Teus Game')
-    pygame.display.set_icon(pygame.image.load(os.path.join("assets/icon", "gameIcon.png")))
+    pygame.display.set_icon(pygame.image.load(os.path.join("assets/other", "gameIcon.png")))
 
     global game_speed, x_pos_bg, y_pos_bg, points, obstacles
     font = pygame.font.Font('freesansbold.ttf', 20)
@@ -117,7 +117,7 @@ def main():
 
     game_speed = 20
     x_pos_bg = 0
-    y_pos_bg = 380
+    y_pos_bg = 0
     points = 0
     obstacles = []
     death_count = 0
