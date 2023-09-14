@@ -107,6 +107,12 @@ def main():
     pygame.display.set_caption('Teus Game')
     pygame.display.set_icon(pygame.image.load(os.path.join("assets/other", "gameIcon.png")))
 
+    pygame.mixer.init()
+    pygame.mixer.music.load(os.path.join("assets/other", "slowMainMusic.mp3"))
+    pygame.mixer.music.set_volume(0.7)
+    pygame.mixer.music.play()
+
+
     global game_speed, x_pos_bg, y_pos_bg, points, obstacles
     font = pygame.font.Font(os.path.join("assets/other", "arcadeFont.ttf"), 20)
 
