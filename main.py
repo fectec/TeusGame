@@ -1,4 +1,5 @@
-import pygame
+import pygame, sys
+import random
 import os
 
 pygame.init()
@@ -14,7 +15,13 @@ RUNNING = [pygame.image.load(os.path.join("assets/protagonist", "protagonistRun1
 JUMPING = pygame.image.load(os.path.join("assets/protagonist", "protagonistJump.png"))
 DUCKING = [pygame.image.load(os.path.join("assets/protagonist", "protagonistDuck1.png")),
            pygame.image.load(os.path.join("assets/protagonist", "protagonistDuck2.png"))]
-BG = pygame.image.load(os.path.join("assets/other", "background.jpg"))
+BG = [pygame.image.load(os.path.join("assets/other", "background.jpg")), pygame.image.load(os.path.join("assets/other", "menuBackground.jpg"))]
+
+OBST = [pygame.image.load(os.path.join("assets/obstacles", "obstaculo1.png")),
+                pygame.image.load(os.path.join("assets/obstacles", "obstaculo2.png")),
+                pygame.image.load(os.path.join("assets/obstacles", "obstaculo3.png"))]
+
+SHIELD = pygame.image.load(os.path.join("assets/powerUps", "shield.png"))
 
 class Protagonist:
 
@@ -70,7 +77,7 @@ class Protagonist:
             self.protagonist_run = True
             self.protagonist_jump = False
             
-    def duck (self):
+    def duck(self):
 
         self.image = self.duck_image[self.step_index // 5]
         self.protagonist_rect = self.image.get_rect()
@@ -98,29 +105,100 @@ class Protagonist:
             self.protagonist_jump = False
             self.jump_vel = self.JUMP_VEL
             
-    def draw(self, SCREEN):
+    def draw(self):
         
         SCREEN.blit(self.image, (self.protagonist_rect.x, self.protagonist_rect.y))
 
-def main():
+class Enemy:
+
+    def __init__ (self, image, type):
+        self.image = image
+        self.type = type
+        self.rect = self.image[self.type].get_rect()
+        self.rect.x = SCREEN_WIDTH
     
-    pygame.display.set_caption('Teus Game')
-    pygame.display.set_icon(pygame.image.load(os.path.join("assets/other", "gameIcon.png")))
+    def update (self):
+        self.rect.x -= game_speed
+        if self.rect.x < -self.rect.width:
+            obstacles.pop()
+    
+    def draw (self):
+        SCREEN.blit(self.image[self.type], self.rect)
+
+class Passerby(Enemy):
+
+    def __init__(self, image):
+        self.type = random.randint(0, 2)
+        super().__init__(image, self.type)
+
+        if self.type == 0:
+            self.rect.y = 623
+        elif self.type == 1:
+            self.rect.y = 602
+        else:
+            self.rect.y = 628
+
+class Button:
+    
+    def __init__(self, x, y, image):
+        self.image = image
+        self.rect = self.image.get_rect()
+        self.rect.topleft = (x, y)
+        self.clicked = False
+
+    def draw(self):
+
+        pos = pygame.mouse.get_pos()
+        print(pos)
+
+        if self.rect.collidepoint(pos):
+            if pygame.mouse.get_pressed()[0] == 1 and self.clicked == False:
+                self.clicked = True
+                print("a")
+
+        if pygame.mouse.get_pressed()[0] == 0:
+                self.clicked = False
+
+        SCREEN.blit(self.image, (self.rect.x, self.rect.y))
+
+""" def main_menu():
+    
+    menuTitleFont = pygame.font.Font(os.path.join("assets/other", "arcadeFont.ttf"), 100)
 
     pygame.mixer.init()
-    pygame.mixer.music.load(os.path.join("assets/other", "slowMainMusic.mp3"))
+    pygame.mixer.music.load(os.path.join("assets/other", "menuMusic.mp3"))
     pygame.mixer.music.set_volume(0.7)
     pygame.mixer.music.play()
 
-
-    global game_speed, x_pos_bg, y_pos_bg, points, obstacles
-    font = pygame.font.Font(os.path.join("assets/other", "arcadeFont.ttf"), 20)
-
     run = True
-    clock = pygame.time.Clock()
 
-    player = Protagonist()
+    while run:
 
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
+
+        MENU_TEXT = menuTitleFont.render("TEUS GAME", True, "#DA8EE7")
+        TEXT_RECT = MENU_TEXT.get_rect()
+        TEXT_RECT.center = (600, 200)
+
+        START_BUTTON_IMAGE = pygame.image.load(os.path.join("assets/other", "startIcon.png"))
+
+        start_button = Button(0, 0, START_BUTTON_IMAGE)
+
+        SCREEN.blit(BG[1], (0, 0))
+        SCREEN.blit(MENU_TEXT, TEXT_RECT)
+        start_button.draw()
+
+        pygame.display.update()
+
+    pygame.mixer.music.stop() """
+
+def main():
+    
+    global game_speed, x_pos_bg, y_pos_bg, points, obstacles
+    
+    scoreFont = pygame.font.Font(os.path.join("assets/other", "arcadeFont.ttf"), 20)
     game_speed = 20
     x_pos_bg = 0
     y_pos_bg = 0
@@ -137,25 +215,39 @@ def main():
         if points % 100 == 0:
             game_speed += 1
 
-        text = font.render("Points: " + str(points), True, (0, 0, 0))
-        textRect = text.get_rect()
-        textRect.center = (600, 35)
-        SCREEN.blit(text, textRect)
+        TEXT = scoreFont.render("Points: " + str(points), True, (0, 0, 0))
+        TEXT_RECT = TEXT.get_rect()
+        TEXT_RECT.center = (600, 35)
+        SCREEN.blit(TEXT, TEXT_RECT)
 
     def background():
 
         global x_pos_bg, y_pos_bg
 
-        image_width = BG.get_width()
+        image_width = BG[0].get_width()
 
-        SCREEN.blit(BG, (x_pos_bg, y_pos_bg))
-        SCREEN.blit(BG, (image_width + x_pos_bg, y_pos_bg))
+        SCREEN.blit(BG[0], (x_pos_bg, y_pos_bg))
+        SCREEN.blit(BG[0], (image_width + x_pos_bg, y_pos_bg))
 
         if x_pos_bg <= -image_width:
-            SCREEN.blit(BG, (image_width + x_pos_bg, y_pos_bg))
+            SCREEN.blit(BG[0], (image_width + x_pos_bg, y_pos_bg))
             x_pos_bg = 0
 
         x_pos_bg -= game_speed
+
+    pygame.display.set_caption('Teus Game')
+    pygame.display.set_icon(pygame.image.load(os.path.join("assets/other", "gameIcon.png")))
+
+    #main_menu()
+
+    pygame.mixer.music.load(os.path.join("assets/other", "slowMainMusic.mp3"))
+    pygame.mixer.music.set_volume(0.7)
+    pygame.mixer.music.play()
+
+    player = Protagonist()
+
+    run = True
+    clock = pygame.time.Clock()
 
     while run:
 
@@ -169,11 +261,25 @@ def main():
 
         background()
 
-        player.draw(SCREEN)
+        player.draw()
         player.update(userInput)
 
+        if len(obstacles) == 0:
+            if random.randint(0, 2) == 0:
+                obstacles.append(Passerby(OBST))
+
+        for obstacle in obstacles:
+            obstacle.draw()
+            obstacle.update()
+
+            if player.protagonist_rect.colliderect(obstacle.rect):
+                
+                print("a")
+                death_count += 1
+                #main_menu(death_count)
+                    
         score()
-        
+
         clock.tick(30)
         pygame.display.update()
 
