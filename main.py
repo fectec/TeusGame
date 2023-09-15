@@ -197,7 +197,7 @@ def menu(death_count):
     pygame.mixer.init()
     pygame.mixer.music.load(os.path.join("assets/other", "menuMusic.mp3"))
     pygame.mixer.music.set_volume(0.7)
-    #pygame.mixer.music.play()
+    pygame.mixer.music.play()
 
     run = True
     clock = pygame.time.Clock()
@@ -283,7 +283,7 @@ def main():
 
     pygame.mixer.music.load(os.path.join("assets/other", "slowMainMusic.mp3"))
     pygame.mixer.music.set_volume(0.7)
-    #pygame.mixer.music.play()
+    pygame.mixer.music.play()
 
     PLAYER = Protagonist()
 
@@ -294,7 +294,7 @@ def main():
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                run = False
+                sys.exit()
 
         SCREEN.fill((255, 255, 255))
 
