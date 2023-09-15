@@ -2,7 +2,7 @@ Teus Game
 
 Este juego parte como una recreación libre del popular T-Rex Dinosaur Game que aparece cuando no hay conexión a internet al realizar búsquedas en el navegador web Google Chrome. En particular, de la implementación realizada por el usuario maxontech, en el lenguaje de programación Python y mediante el conjunto de módulos orientado a la creación de videojuegos en 2D Pygame. A continuación una liga al repositorio del proyecto base: https://github.com/maxontech/chrome-dinosaur
 
-La primera diferencia notable se encuentra en el apartado gráfico. El T-Rex es remplazado en el rol de protagonista por Teus, la mascota del Tecnológico de Monterrey. El fondo pasa de ser un desierto monocromático al emblemático paisaje de la rectoría del campus Monterrey. Finalmente, los cactus a evitar toman la forma de los animales (venado, pavorreal y gato) que puedes encontrar rondando por las instalaciones de esta institución.
+La primera diferencia notable se encuentra en el apartado gráfico. El T-Rex es remplazado en el rol de protagonista por Teus, la mascota del Tecnológico de Monterrey. El fondo pasa de ser un desierto monocromático al emblemático paisaje de la rectoría del campus Monterrey. Finalmente, los cactus, que representan los obstáculos, toman la forma de los animales (venado, pavorreal y gato) que puedes encontrar rondando por las instalaciones de esta institución.
  
 Mecánicamente, estamos ante una experiencia bastante similar. No obstante, dado que el videojuego original destaca por su diseño sencillo, se optó por incluir un clásico power-up, el escudo de invencibilidad, que enriquezca la jugabilidad, esto en pro de evitar la monotonía. 
 
