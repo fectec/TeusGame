@@ -46,7 +46,6 @@ class Protagonist:
         self.image = self.run_image[0]
         self.protagonist_rect = self.image.get_rect()
         self.protagonist_rect.x = self.X_POS
-        self.protagonist_rect.y = self.Y_POS
     
     def update(self, userInput):
 
@@ -343,10 +342,12 @@ def main():
         PLAYER.update(userInput)
 
         if len(enemies) == 0:
+
             if random.randint(0, 2) == 0:
                 enemies.append(Obstacle(OBSTACLE))
 
         if len(items) == 0:
+
             if random.randint(0, 100) == 0:
                 items.append(Shield(SHIELD))
 
