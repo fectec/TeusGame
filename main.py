@@ -123,8 +123,8 @@ class Enemy:
     
     def update(self):
 
-        self.rect.x -= game_speed
-        self.collideRect.x -= game_speed
+        self.rect.x -= gameSpeed
+        self.collideRect.x -= gameSpeed
 
         if self.rect.x < -self.rect.width:
             enemies.pop()
@@ -140,19 +140,20 @@ class Obstacle(Enemy):
         self.type = random.randint(0, 2)
         super().__init__(image, self.type)
 
-        #P
-        #V
-        #G
-
         if self.type == 0:
+
             self.rect.y = 623
             self.collideRect.y = self.rect.y + 90
             self.collideRect.x = SCREEN_WIDTH + 53
+
         elif self.type == 1:
+
             self.rect.y = 602
             self.collideRect.y = self.rect.y + 120
             self.collideRect.x = SCREEN_WIDTH + 55
+
         else:
+
             self.rect.y = 628
             self.collideRect.y = self.rect.y + 90
             self.collideRect.x = SCREEN_WIDTH + 50
@@ -166,10 +167,13 @@ class Item:
 
         self.rect = self.image[self.type].get_rect()
         self.rect.x = SCREEN_WIDTH
+
+        self.collideRect = pygame.rect.Rect((0, 0), (self.rect.width * 0.8, self.rect.height * 0.9))
     
     def update (self):
 
-        self.rect.x -= game_speed
+        self.rect.x -= gameSpeed
+        self.collideRect.x -= gameSpeed
 
         if self.rect.x < -self.rect.width:
             items.pop()
@@ -185,11 +189,18 @@ class Shield(Item):
         self.type = random.randint(0,1)
         super().__init__(image, self.type)
 
+        self.rect.y = 350
+        self.collideRect.y = self.rect.y + 90
+        self.collideRect.x = SCREEN_WIDTH + 53
+
         if self.type == 0:
-            self.rect.y = 350
-        elif self.type == 1:
-            self.rect.y = 350
-        
+
+            self.protectionTime = 10000
+
+        else:
+
+            self.protectionTime = 15000
+
 class Button:
     
     def __init__(self, x, y, image):
@@ -266,10 +277,10 @@ def menu(death_count):
 
 def main():
     
-    global game_speed, x_pos_bg, y_pos_bg, points, enemies, items
+    global gameSpeed, x_pos_bg, y_pos_bg, points, enemies, items
     
     SCORE_FONT = pygame.font.Font(os.path.join("assets/other", "arcadeFont.ttf"), 20)
-    game_speed = 20
+    gameSpeed = 20
     x_pos_bg = 0
     y_pos_bg = 0
     points = 0
@@ -279,12 +290,12 @@ def main():
     
     def score():
 
-        global points, game_speed
+        global points, gameSpeed
 
         points += 1
 
         if points % 200 == 0:
-            game_speed += 1
+            gameSpeed += 1
 
         SCORE_TEXT = SCORE_FONT.render("Points: " + str(points), True, (0, 0, 0))
         SCORE_TEXT_RECT = SCORE_TEXT.get_rect()
@@ -304,7 +315,7 @@ def main():
             SCREEN.blit(BG[0], (image_width + x_pos_bg, y_pos_bg))
             x_pos_bg = 0
 
-        x_pos_bg -= game_speed
+        x_pos_bg -= gameSpeed
 
     pygame.display.set_caption('Teus Game')
     pygame.display.set_icon(pygame.image.load(os.path.join("assets/other", "gameIcon.png")))
@@ -352,8 +363,8 @@ def main():
             shield.draw()
             shield.update()
 
-            if PLAYER.protagonist_rect.colliderect(shield.rect):
-                pygame.time.delay(2000)
+            if PLAYER.protagonist_rect.colliderect(shield.collideRect):
+                print("a")
                     
         score()
 
