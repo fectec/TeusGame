@@ -8,6 +8,5 @@ Mecánicamente, estamos ante una experiencia bastante similar. No obstante, dado
 
 En adición, se incluyeron otros elementos adicionales para aumentar el nivel de satisfacción del usuario, entre ellos, menú con puntuación, música, efectos de sonido. Finalmente, se mejoraron las hitboxes o cajas de colisión de los enemigos, de modo que impactar con ellos y perder sea un movimiento más intuitivo para los jugadores. 
 
-En este proyecto estuvieron involucrados los programadores Juan Manuel Félix Campos (github.com/fectec) y Joirid Juárez Salinas (github.com/Joirid). El primero se encargó de crear
-
+En este proyecto estuvieron involucrados los programadores Juan Manuel Félix Campos (github.com/fectec) y Joirid Juárez Salinas (github.com/Joirid). El primero se encargó de diseñar las clase Protagonist, Enemy y Obstacle que implementan las funcionalidades para las entidades respectivas. Asimismo, la segunda ocupó de proyectar las clases Item y Shield, programando esta característica única de Teus Game.
 
