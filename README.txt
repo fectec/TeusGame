@@ -10,4 +10,4 @@ En adición, se incluyeron otros elementos adicionales para aumentar el nivel de
 
 En este proyecto estuvieron involucrados los programadores Juan Manuel Félix Campos (github.com/fectec) y Joirid Juárez Salinas (github.com/Joirid). El primero se encargó de diseñar las clase Protagonist, Enemy y Obstacle que implementan las funcionalidades para las entidades respectivas. Asimismo, la segunda ocupó de proyectar las clases Item y Shield, programando esta característica única de Teus Game.
 
-Para poder realizar este proyecto, lo primero que se realizó fue analizar los diversos videojuegos que habíamos probado.
+Para poder realizar este proyecto, lo primero que se realizó fue analizar los diversos videojuegos que habíamos probado. Uno de los que más se destacó fue el T-Rex Dinosaur Game debido a su amplio alcance y finalmente fue el elegido para usarse como base del videojuego final.
