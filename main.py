@@ -17,11 +17,11 @@ DUCKING = [pygame.image.load(os.path.join("assets/protagonist", "protagonistDuck
            pygame.image.load(os.path.join("assets/protagonist", "protagonistDuck2.png"))]
 BG = [pygame.image.load(os.path.join("assets/other", "background.jpg")), pygame.image.load(os.path.join("assets/other", "menuBackground.jpg"))]
 
-OBST = [pygame.image.load(os.path.join("assets/obstacles", "obstacle1.png")),
+OBSTACLE = [pygame.image.load(os.path.join("assets/obstacles", "obstacle1.png")),
                 pygame.image.load(os.path.join("assets/obstacles", "obstacle2.png")),
                 pygame.image.load(os.path.join("assets/obstacles", "obstacle3.png"))]
 
-SHIELD = pygame.image.load(os.path.join("assets/powerUps", "shield.png"))
+SHIELD = [pygame.image.load(os.path.join("assets/powerUps", "shield1.png")), pygame.image.load(os.path.join("assets/powerUps", "shield2.png"))]
 
 class Protagonist:
 
@@ -58,7 +58,7 @@ class Protagonist:
 
         if self.protagonist_jump:
             self.jump()
-        
+
         if self.step_index >= 10:
             self.step_index = 0
         
@@ -93,7 +93,7 @@ class Protagonist:
         self.protagonist_rect.y = self.Y_POS
         self.step_index += 1
         
-    def jump (self):
+    def jump (self): 
 
         self.image = self.jump_image
 
@@ -121,19 +121,19 @@ class Enemy:
 
         self.collideRect = pygame.rect.Rect((0, 0), (self.rect.width * 0.8, self.rect.height * 0.9))
     
-    def update (self):
+    def update(self):
 
         self.rect.x -= game_speed
         self.collideRect.x -= game_speed
 
         if self.rect.x < -self.rect.width:
-            obstacles.pop()
+            enemies.pop()
     
     def draw (self):
 
         SCREEN.blit(self.image[self.type], self.rect)
 
-class Passerby(Enemy):
+class Obstacle(Enemy):
 
     def __init__(self, image):
 
@@ -146,20 +146,50 @@ class Passerby(Enemy):
 
         if self.type == 0:
             self.rect.y = 623
-            
             self.collideRect.y = self.rect.y + 90
             self.collideRect.x = SCREEN_WIDTH + 53
         elif self.type == 1:
             self.rect.y = 602
-
             self.collideRect.y = self.rect.y + 120
             self.collideRect.x = SCREEN_WIDTH + 55
         else:
             self.rect.y = 628
-
             self.collideRect.y = self.rect.y + 90
             self.collideRect.x = SCREEN_WIDTH + 50
 
+class Item:
+
+    def __init__ (self, image, type):
+
+        self.image = image
+        self.type = type
+
+        self.rect = self.image[self.type].get_rect()
+        self.rect.x = SCREEN_WIDTH
+    
+    def update (self):
+
+        self.rect.x -= game_speed
+
+        if self.rect.x < -self.rect.width:
+            items.pop()
+    
+    def draw (self):
+
+        SCREEN.blit(self.image[self.type], self.rect)
+        
+class Shield(Item):
+    
+    def __init__(self, image):
+        
+        self.type = random.randint(0,1)
+        super().__init__(image, self.type)
+
+        if self.type == 0:
+            self.rect.y = 350
+        elif self.type == 1:
+            self.rect.y = 350
+        
 class Button:
     
     def __init__(self, x, y, image):
@@ -194,10 +224,7 @@ def menu(death_count):
     START_BUTTON_IMAGE = pygame.image.load(os.path.join("assets/other", "startIcon.png"))
     START_BUTTON = Button(SCREEN_WIDTH // 2, SCREEN_WIDTH // 6 * 3, START_BUTTON_IMAGE)
 
-    pygame.mixer.init()
-    pygame.mixer.music.load(os.path.join("assets/other", "menuMusic.mp3"))
-    pygame.mixer.music.set_volume(0.7)
-    pygame.mixer.music.play()
+    pygame.mixer.Channel(0).play(pygame.mixer.Sound(os.path.join("assets/other", "menuMusic.mp3")))
 
     run = True
     clock = pygame.time.Clock()
@@ -239,14 +266,15 @@ def menu(death_count):
 
 def main():
     
-    global game_speed, x_pos_bg, y_pos_bg, points, obstacles
+    global game_speed, x_pos_bg, y_pos_bg, points, enemies, items
     
     SCORE_FONT = pygame.font.Font(os.path.join("assets/other", "arcadeFont.ttf"), 20)
     game_speed = 20
     x_pos_bg = 0
     y_pos_bg = 0
     points = 0
-    obstacles = []
+    enemies = []
+    items = []
     death_count = 0
     
     def score():
@@ -281,9 +309,7 @@ def main():
     pygame.display.set_caption('Teus Game')
     pygame.display.set_icon(pygame.image.load(os.path.join("assets/other", "gameIcon.png")))
 
-    pygame.mixer.music.load(os.path.join("assets/other", "slowMainMusic.mp3"))
-    pygame.mixer.music.set_volume(0.7)
-    pygame.mixer.music.play()
+    pygame.mixer.Channel(0).play(pygame.mixer.Sound(os.path.join("assets/other", "mainMusic.mp3")))
 
     PLAYER = Protagonist()
 
@@ -305,18 +331,29 @@ def main():
         PLAYER.draw()
         PLAYER.update(userInput)
 
-        if len(obstacles) == 0:
+        if len(enemies) == 0:
             if random.randint(0, 2) == 0:
-                obstacles.append(Passerby(OBST))
+                enemies.append(Obstacle(OBSTACLE))
 
-        for obstacle in obstacles:
+        if len(items) == 0:
+            if random.randint(0, 100) == 0:
+                items.append(Shield(SHIELD))
+
+        for obstacle in enemies:
             obstacle.draw()
             obstacle.update()
 
             if PLAYER.protagonist_rect.colliderect(obstacle.collideRect):
-                pygame.time.delay(1000)
+                pygame.time.delay(500)
                 death_count += 1
                 menu(death_count)
+
+        for shield in items:
+            shield.draw()
+            shield.update()
+
+            if PLAYER.protagonist_rect.colliderect(shield.rect):
+                pygame.time.delay(2000)
                     
         score()
 
