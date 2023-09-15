@@ -12,4 +12,4 @@ En este proyecto estuvieron involucrados los programadores Juan Manuel Félix Ca
 
 Para poder realizar este proyecto, el día lunes lo primero que se realizó fue analizar los diversos videojuegos que habíamos probado y verificar si existían códigos base para ampliar el juego. Uno de los que más se destacó fue el T-Rex Dinosaur Game debido a su amplio alcance y finalmente fue el elegido para usarse como base del videojuego final. Después de seleccionar el juego, vimos cuáles podrían ser las mejoras a incluir en la nueva versión que desarrollaríamos, las cuales se han especificado previamente (usar como temática la universidad: cambiar de protagonista, entorno y obstáculos, así como incluir un escudo que proteja al jugador por determinado tiempo).
 
-Al siguiente día, se revisaron a más profundidad los códigos y se empezó a avanzar en la codificación del juego, aún sn realizar cambios para el desarrollo final del proyecto. 
+Al siguiente día, se revisaron a más profundidad los códigos y se empezó a avanzar en la codificación del juego, aún sn realizar cambios para el desarrollo final del proyecto. El día miércoles
