@@ -17,9 +17,9 @@ DUCKING = [pygame.image.load(os.path.join("assets/protagonist", "protagonistDuck
            pygame.image.load(os.path.join("assets/protagonist", "protagonistDuck2.png"))]
 BG = [pygame.image.load(os.path.join("assets/other", "background.jpg")), pygame.image.load(os.path.join("assets/other", "menuBackground.jpg"))]
 
-OBST = [pygame.image.load(os.path.join("assets/obstacles", "obstaculo1.png")),
-                pygame.image.load(os.path.join("assets/obstacles", "obstaculo2.png")),
-                pygame.image.load(os.path.join("assets/obstacles", "obstaculo3.png"))]
+OBST = [pygame.image.load(os.path.join("assets/obstacles", "obstacle1.png")),
+                pygame.image.load(os.path.join("assets/obstacles", "obstacle2.png")),
+                pygame.image.load(os.path.join("assets/obstacles", "obstacle3.png"))]
 
 SHIELD = pygame.image.load(os.path.join("assets/powerUps", "shield.png"))
 
@@ -119,7 +119,7 @@ class Enemy:
         self.rect = self.image[self.type].get_rect()
         self.rect.x = SCREEN_WIDTH
 
-        self.collideRect = pygame.rect.Rect((0, 0), (self.rect.width * 0.60, self.rect.height * 0.60))
+        self.collideRect = pygame.rect.Rect((0, 0), (self.rect.width * 0.8, self.rect.height * 0.9))
     
     def update (self):
 
@@ -130,6 +130,7 @@ class Enemy:
             obstacles.pop()
     
     def draw (self):
+
         SCREEN.blit(self.image[self.type], self.rect)
 
 class Passerby(Enemy):
@@ -145,22 +146,19 @@ class Passerby(Enemy):
 
         if self.type == 0:
             self.rect.y = 623
+            
+            self.collideRect.y = self.rect.y + 90
+            self.collideRect.x = SCREEN_WIDTH + 53
         elif self.type == 1:
             self.rect.y = 602
+
+            self.collideRect.y = self.rect.y + 120
+            self.collideRect.x = SCREEN_WIDTH + 55
         else:
             self.rect.y = 628
 
-        self.collideRect.center = self.rect.center
-
-        if self.type == 0:
-            self.collideRect.y = self.rect.y + 100
-            self.collideRect.x = SCREEN_WIDTH + 48
-        elif self.type == 1:
-            self.collideRect.y = self.rect.y + 100
-            self.collideRect.x = SCREEN_WIDTH + 60
-        else:
-            self.collideRect.y = self.rect.y + 100
-            self.collideRect.x = SCREEN_WIDTH + 27
+            self.collideRect.y = self.rect.y + 90
+            self.collideRect.x = SCREEN_WIDTH + 50
 
 class Button:
     
@@ -257,12 +255,12 @@ def main():
 
         points += 1
 
-        if points % 100 == 0:
+        if points % 200 == 0:
             game_speed += 1
 
         SCORE_TEXT = SCORE_FONT.render("Points: " + str(points), True, (0, 0, 0))
         SCORE_TEXT_RECT = SCORE_TEXT.get_rect()
-        SCORE_TEXT_RECT.center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 6)
+        SCORE_TEXT_RECT.center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 15)
         SCREEN.blit(SCORE_TEXT, SCORE_TEXT_RECT)
 
     def background():
@@ -316,7 +314,7 @@ def main():
             obstacle.update()
 
             if PLAYER.protagonist_rect.colliderect(obstacle.collideRect):
-                pygame.time.delay(2000)
+                pygame.time.delay(1000)
                 death_count += 1
                 menu(death_count)
                     
