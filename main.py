@@ -162,8 +162,14 @@ class Protagonist:
         
         SCREEN.blit(self.image, (self.protagonistRect.x, self.protagonistRect.y))
 
-class Enemy:
+# Definition of the Enemy class.
 
+class Enemy:
+    
+    """ Constructor of the Enemy class. It stablishes the characteristics of the enemy: 
+    the reference of the image, the type of each item, the limits of the item by the 
+    function rect, the position on screen and the attribute collide."""
+    
     def __init__ (self, image, type):
         
         self.image = image
@@ -174,6 +180,10 @@ class Enemy:
 
         self.collideRect = pygame.rect.Rect((0, 0), (self.rect.width * 0.8, self.rect.height * 0.9))
     
+    
+    """Update method. Update the position of the enemy on screen 
+    and when it eliminates the enemy on the list. """
+    
     def update(self):
 
         self.rect.x -= gameSpeed
@@ -181,6 +191,8 @@ class Enemy:
 
         if self.rect.x < -self.rect.width:
             enemies.pop()
+    
+    """Draw method. Show on screen the item."""
     
     def draw (self):
 
@@ -220,27 +232,48 @@ class Obstacle(Enemy):
             self.collideRect.y = self.rect.y + 90
             self.collideRect.x = SCREEN_WIDTH + 50
 
-class Item:
+# Definition of the Item class.
 
+class Item:
+    
+    """ Constructor of the Item class. It stablishes the characteristics of the item: 
+    the reference of the image, the type of each item, the limits of the item by the 
+    function rect, the position on screen and tha attribute of invencible when protagonist 
+    reach the item."""
+    
     def __init__ (self, image, type):
         self.image = image
         self.type = type
         self.rect = self.image[self.type].get_rect()
         self.rect.x = SCREEN_WIDTH
         self.invencible = False
+    
+    """Update method. Update the position of the item on screen 
+    and when it eliminates the item on the list. """
     
     def update (self):
         self.rect.x -= gameSpeed
         if self.rect.x < -self.rect.width-2500:
             items.pop()
     
+    """Draw method. Show on screen the item."""
+    
     def draw (self):
         SCREEN.blit(self.image[self.type], self.rect)
     
+    """Activate method. Update the invencible attribute."""
+      
     def activate (self):
         self.invencible = True
-        
+
+# Definition of the Shield class.  
+   
 class Shield(Item):
+    
+    """ Constructor of the Shield class, which is a subclass of Item. It stablishes 
+    the characteristics of the shield: the reference of the image, the type of each 
+    shield, the limits of the shield by the function rect, the position on screen 
+    and the attribute of invencible when protagonist reach the shield."""
     
     def __init__ (self, image, type):
         self.image = image
@@ -249,9 +282,15 @@ class Shield(Item):
         self.rect.x = SCREEN_WIDTH
         self.invencible = False
     
+    """Draw method. Show on screen the shield."""
+    
     def draw (self):
         SCREEN.blit(self.image[self.type], self.rect)
-
+    
+    """ Constructor of the Shield class. It initialize randomly which type of shield 
+    will show the game. If its the first one will show higher up on screen than the 
+    second."""
+    
     def __init__(self, image):
         self.type = random.randint(0,1)
         super().__init__(image, self.type)
@@ -260,7 +299,11 @@ class Shield(Item):
             self.rect.y = 350
         elif self.type == 1:
             self.rect.y = 450
-            
+    
+    """Update method. Updates the position of the shield on the screen 
+    and removes the shield from the item list when it reaches a certain distance.
+    Shields of type 0 persist longer than shields of type 1."""
+    
     def update (self):
         self.rect.x -= gameSpeed
         if self.type == 0:
@@ -269,6 +312,8 @@ class Shield(Item):
         elif self.type == 1:
             if self.rect.x < -self.rect.width-2000:
                 items.pop()
+                
+    """Activate method. Update the invencible attribute.""" 
     
     def activate (self):
         self.invencible = True
