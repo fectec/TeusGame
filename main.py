@@ -326,8 +326,7 @@ def menu(death_count):
     # Plays the menu music.
 
     pygame.mixer.Channel(0).play(pygame.mixer.Sound(os.path.join("assets/other", "menuMusic.mp3")))
-    pygame.mixer.music.set_volume()
-
+    
     run = True
     clock = pygame.time.Clock()
     
