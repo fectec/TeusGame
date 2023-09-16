@@ -119,7 +119,8 @@ class Protagonist:
 
             self.stepIndex = 0
             
-    """Duck method. Sets the character sprite to the ducking one."""
+    # Duck method. Sets the character sprite and position to the ducking ones.
+
     def duck(self):
 
         self.image = self.duckImage[self.stepIndex // 5]
@@ -127,7 +128,9 @@ class Protagonist:
         self.protagonistRect.x = self.X_POS_DUCK
         self.protagonistRect.y = self.Y_POS_DUCK
         self.stepIndex += 1
-        
+    
+    # Run method. Sets the character sprite and position to the running ones."""
+
     def run(self):
 
         self.image = self.runImage[self.stepIndex // 5]
@@ -135,7 +138,11 @@ class Protagonist:
         self.protagonistRect.x = self.X_POS
         self.protagonistRect.y = self.Y_POS
         self.stepIndex += 1
-        
+    
+    """ Run method. Sets the character sprite and position to the jumping ones.
+    Y position decreases so it looks like the character is jumping until it has reached the ground
+    where the values restart."""
+
     def jump (self): 
 
         self.image = self.jumpImage
@@ -147,7 +154,9 @@ class Protagonist:
         if self.jumpVelocity < -self.JUMP_VEL:
             self.protagonistJump = False
             self.jumpVelocity = self.JUMP_VEL
-            
+    
+    # Drawing method. Displays the character on screen.
+
     def draw(self):
         
         SCREEN.blit(self.image, (self.protagonistRect.x, self.protagonistRect.y))
@@ -204,45 +213,55 @@ class Obstacle(Enemy):
 class Item:
 
     def __init__ (self, image, type):
-
         self.image = image
         self.type = type
-
         self.rect = self.image[self.type].get_rect()
         self.rect.x = SCREEN_WIDTH
-
-        self.collideRect = pygame.rect.Rect((0, 0), (self.rect.width * 0.8, self.rect.height * 0.9))
+        self.invencible = False
     
     def update (self):
-
         self.rect.x -= gameSpeed
-        self.collideRect.x -= gameSpeed
-
-        if self.rect.x < -self.rect.width:
+        if self.rect.x < -self.rect.width-2500:
             items.pop()
     
     def draw (self):
-
         SCREEN.blit(self.image[self.type], self.rect)
+    
+    def activate (self):
+        self.invencible = True
         
 class Shield(Item):
     
+    def __init__ (self, image, type):
+        self.image = image
+        self.type = type
+        self.rect = self.image[self.type].get_rect()
+        self.rect.x = SCREEN_WIDTH
+        self.invencible = False
+    
+    def draw (self):
+        SCREEN.blit(self.image[self.type], self.rect)
+
     def __init__(self, image):
-        
         self.type = random.randint(0,1)
         super().__init__(image, self.type)
 
-        self.rect.y = 350
-        self.collideRect.y = self.rect.y + 90
-        self.collideRect.x = SCREEN_WIDTH + 53
-
         if self.type == 0:
-
-            self.protectionTime = 10000
-
-        else:
-
-            self.protectionTime = 15000
+            self.rect.y = 350
+        elif self.type == 1:
+            self.rect.y = 450
+            
+    def update (self):
+        self.rect.x -= gameSpeed
+        if self.type == 0:
+            if self.rect.x < -self.rect.width-3000:
+                items.pop()
+        elif self.type == 1:
+            if self.rect.x < -self.rect.width-2000:
+                items.pop()
+    
+    def activate (self):
+        self.invencible = True
 
 class Button:
     
@@ -399,17 +418,26 @@ def main():
             obstacle.draw()
             obstacle.update()
 
-            if PLAYER.protagonistRect.colliderect(obstacle.collideRect):
-                pygame.time.delay(500)
-                death_count += 1
-                menu(death_count)
+            if PLAYER.protagonist_rect.colliderect(obstacle.collideRect):
+                if len (items) == 0 :
+                    pygame.time.delay(500)
+                    death_count += 1
+                    menu(death_count)
+                elif (len (items) > 0):
+                    if (items[0].invencible == True):
+                        print ("Power Up\n")
+                    else :
+                        pygame.time.delay(500)
+                        death_count += 1
+                        menu(death_count)
 
         for shield in items:
             shield.draw()
             shield.update()
 
-            if PLAYER.protagonistRect.colliderect(shield.collideRect):
+            if PLAYER.protagonist_rect.colliderect(shield.rect):
                 print("a")
+                shield.activate()
                     
         score()
 
