@@ -263,14 +263,21 @@ class Shield(Item):
     def activate (self):
         self.invencible = True
 
+# Definition of the Button class. An instance of this class is used on the menu.
+
 class Button:
     
+    """ Constructor for the Button class. It sets its image and rect attributes and
+    stablishes that the button is not clicked at first."""
+
     def __init__(self, x, y, image):
 
         self.image = image
         self.rect = self.image.get_rect()
         self.rect.center = (x, y)
         self.clicked = False
+
+    # Method that checks if the button is pressed and draws it on screen.
 
     def draw(self):
 
@@ -285,36 +292,56 @@ class Button:
 
         SCREEN.blit(self.image, (self.rect.x, self.rect.y))
 
+""" Method to display the menu. It stablishes the fonts for the title and subtitle text, creates and positions
+them along with the button."""
+
 def menu(death_count):
     
+    # Fonts.
+
     MENU_TITLE_FONT = pygame.font.Font(os.path.join("assets/other", "arcadeFont.ttf"), 100)
     MENU_SUBTITLE_FONT = pygame.font.Font(os.path.join("assets/other", "arcadeFont.ttf"), 40)
-   
+    
+    # Creation and siting of title text.
+
     TITLE_TEXT = MENU_TITLE_FONT.render("TEUS GAME", True, "#C1EB17")
     TITLE_TEXT_RECT = TITLE_TEXT.get_rect()
     TITLE_TEXT_RECT.center = (SCREEN_WIDTH // 2, SCREEN_WIDTH // 6)
 
+    # Creation and sitting of button.
+
     START_BUTTON_IMAGE = pygame.image.load(os.path.join("assets/other", "startIcon.png"))
     START_BUTTON = Button(SCREEN_WIDTH // 2, SCREEN_WIDTH // 6 * 3, START_BUTTON_IMAGE)
+
+    # Plays the menu music.
 
     pygame.mixer.Channel(0).play(pygame.mixer.Sound(os.path.join("assets/other", "menuMusic.mp3")))
 
     run = True
     clock = pygame.time.Clock()
-
+    
     while run:
+        
+        # If close window button is pressed, execution stops.
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
 
+        # If button is clicked, menu changes to main function, where the game takes place.
+
         if START_BUTTON.clicked == True:
             SCREEN.fill("black")
             main()
 
+        # Display of menu background, title text and button.
+
         SCREEN.blit(BG[1], (0, 0))
         SCREEN.blit(TITLE_TEXT, TITLE_TEXT_RECT)
         START_BUTTON.draw()
+
+        """ Creates subtitle text based on death count. Also creates, ubicates and displays score text if the game has already
+        been played once."""
 
         if death_count == 0:
             SUBTITLE_TEXT = MENU_SUBTITLE_FONT.render("PRESS THE BUTTON TO START", True, "#83EBE7")
@@ -327,29 +354,44 @@ def menu(death_count):
 
             SCREEN.blit(SCORE_TEXT, SCORE_TEXT_RECT)
         
+        # Displays subtitle text.
+
         SUBTITLE_TEXT_RECT = SUBTITLE_TEXT.get_rect()
         SUBTITLE_TEXT_RECT.center = (SCREEN_WIDTH // 2, SCREEN_WIDTH // 6 * 2)
 
         SCREEN.blit(SUBTITLE_TEXT, SUBTITLE_TEXT_RECT)
-        
+
+        # Updating screen.
+
         clock.tick(30)
         pygame.display.update()
 
+    # Menu music stops playing.
+
     pygame.mixer.music.stop()
+
+# Method where game takes place.
 
 def main():
     
-    global gameSpeed, x_pos_bg, y_pos_bg, points, enemies, items
+    """ Declaration of global variables of speed of game, position of the background,
+    points and list of enemies and items."""
+
+    global gameSpeed, xPosBg, yPosBg, points, enemies, items
+
+    # Definition of variables, which includes non global font for the score text in the game and death count.
     
     SCORE_FONT = pygame.font.Font(os.path.join("assets/other", "arcadeFont.ttf"), 20)
     gameSpeed = 20
-    x_pos_bg = 0
-    y_pos_bg = 0
+    xPosBg = 0
+    yPosBg = 0
     points = 0
     enemies = []
     items = []
     death_count = 0
     
+    # Method for increasing points, accelerating game if certain points are won, and rendering score text.
+
     def score():
 
         global points, gameSpeed
@@ -364,45 +406,62 @@ def main():
         SCORE_TEXT_RECT.center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 15)
         SCREEN.blit(SCORE_TEXT, SCORE_TEXT_RECT)
 
+    """Method por displaying background by countiniously rendering the same background image one after
+    another and moving them along with the game speed."""
+
     def background():
 
-        global x_pos_bg, y_pos_bg
+        global xPosBg, yPosBg
 
         image_width = BG[0].get_width()
 
-        SCREEN.blit(BG[0], (x_pos_bg, y_pos_bg))
-        SCREEN.blit(BG[0], (image_width + x_pos_bg, y_pos_bg))
+        SCREEN.blit(BG[0], (xPosBg, yPosBg))
+        SCREEN.blit(BG[0], (image_width + xPosBg, yPosBg))
 
-        if x_pos_bg <= -image_width:
-            SCREEN.blit(BG[0], (image_width + x_pos_bg, y_pos_bg))
-            x_pos_bg = 0
+        if xPosBg <= -image_width:
+            SCREEN.blit(BG[0], (image_width + xPosBg, yPosBg))
+            xPosBg = 0
 
-        x_pos_bg -= gameSpeed
+        xPosBg -= gameSpeed
+
+    # Setting game caption and icon.
 
     pygame.display.set_caption('Teus Game')
     pygame.display.set_icon(pygame.image.load(os.path.join("assets/other", "gameIcon.png")))
 
+    # Play game music.
+
     pygame.mixer.Channel(0).play(pygame.mixer.Sound(os.path.join("assets/other", "mainMusic.mp3")))
+
+    # Creating instance of Protagonist class for the game character.
 
     PLAYER = Protagonist()
 
     run = True
     clock = pygame.time.Clock()
 
+    # Game loop.
+
     while run:
+        
+        # If close window button is pressed, execution stops.
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
 
-        SCREEN.fill((255, 255, 255))
+        # Gets user keyboard input.
 
         userInput = pygame.key.get_pressed()
+
+        # Draws background and character, also updates the last one based on input.
 
         background()
 
         PLAYER.draw()
         PLAYER.update(userInput)
+
+        # Generates random enemies and items.
 
         if len(enemies) == 0:
 
@@ -414,16 +473,19 @@ def main():
             if random.randint(0, 100) == 0:
                 items.append(Shield(SHIELD))
 
+        """ Draws and updates obstacles, 
+         if protagonist touches them game is over and menu function is called."""
+
         for obstacle in enemies:
             obstacle.draw()
             obstacle.update()
 
-            if PLAYER.protagonist_rect.colliderect(obstacle.collideRect):
-                if len (items) == 0 :
+            if PLAYER.protagonistRect.colliderect(obstacle.collideRect):
+                if len(items) == 0 :
                     pygame.time.delay(500)
                     death_count += 1
                     menu(death_count)
-                elif (len (items) > 0):
+                elif (len(items) > 0):
                     if (items[0].invencible == True):
                         print ("Power Up\n")
                     else :
@@ -431,17 +493,26 @@ def main():
                         death_count += 1
                         menu(death_count)
 
+        """ Draws and updates shields, 
+         if protagonist touches them game gains invulnerability, more or less,
+         doesn't die when touched by obstacle."""
+                
         for shield in items:
             shield.draw()
             shield.update()
 
-            if PLAYER.protagonist_rect.colliderect(shield.rect):
-                print("a")
+            if PLAYER.protagonistRect.colliderect(shield.rect):
                 shield.activate()
-                    
+            
+        # Displays points.
+
         score()
+
+        # Updating screen.
 
         clock.tick(30)
         pygame.display.update()
+
+# Calls menu function by first time, with death count equal to zero.
 
 menu(death_count = 0)
