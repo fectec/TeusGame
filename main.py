@@ -87,6 +87,7 @@ class Protagonist:
             self.protagonistRun = False
             self.protagonistDuck = False
             self.protagonistJump = True
+
         elif userInput[pygame.K_DOWN] and not self.protagonistJump:
 
             self.protagonistRun = False
@@ -185,12 +186,21 @@ class Enemy:
 
         SCREEN.blit(self.image[self.type], self.rect)
 
+# Class derived from Enemy class, it specifies stiff enemies that scroll along the background.
+
 class Obstacle(Enemy):
 
     def __init__(self, image):
 
+        # Gets enemy type, there are three: Cat, Deer and Peacock.
+
         self.type = random.randint(0, 2)
+
+        # Calls upper class constructor.
+
         super().__init__(image, self.type)
+
+        # Specifies position of enemy based on its type.
 
         if self.type == 0:
 
@@ -316,6 +326,7 @@ def menu(death_count):
     # Plays the menu music.
 
     pygame.mixer.Channel(0).play(pygame.mixer.Sound(os.path.join("assets/other", "menuMusic.mp3")))
+    pygame.mixer.music.set_volume()
 
     run = True
     clock = pygame.time.Clock()
