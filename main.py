@@ -1,10 +1,18 @@
-import pygame, sys
-import random
+""" Import pygame module for 2D videogame development functionalities,
+ os module for file access, random module to control the rate of ocurrence
+ of elements and sys module for quitting the game."""
+
+import pygame
 import os
+import random
+import sys
+
+# Start pygame module.
 
 pygame.init()
 
-# GLOBAL CONSTANTS
+""" Definition of global constants, such as the screen dimensions and the screen itself,
+the running, jumping, ducking, backgrounds, obstacles and shields assets."""
 
 SCREEN_WIDTH = 1200
 SCREEN_HEIGHT = 762
@@ -23,90 +31,126 @@ OBSTACLE = [pygame.image.load(os.path.join("assets/obstacles", "obstacle1.png"))
 
 SHIELD = [pygame.image.load(os.path.join("assets/powerUps", "shield1.png")), pygame.image.load(os.path.join("assets/powerUps", "shield2.png"))]
 
+# Definition of the Protagonist class
+
 class Protagonist:
 
-    X_POS = 80
+    """ Attributes of the Protagonist class, such as the x and y position
+    when running and ducking and the jump velocity. These are meant to
+    be first value constants since the sprite itself will be modified
+    using the pygame Rect object."""
+
+    X_POS = 80 
     Y_POS = 620
     X_POS_DUCK = 76
     Y_POS_DUCK = 660
     JUMP_VEL = 8.5
     
-    def __init__(self):
-    
-        self.duck_image = DUCKING
-        self.run_image = RUNNING
-        self.jump_image = JUMPING
-        
-        self.protagonist_duck = False
-        self.protagonist_run = True
-        self.protagonist_jump = False
-        
-        self.step_index = 0
-        self.jump_vel = self.JUMP_VEL
-        self.image = self.run_image[0]
-        self.protagonist_rect = self.image.get_rect()
-        self.protagonist_rect.x = self.X_POS
-    
-    def update(self, userInput):
+    """ Constructor of the Protagonist class. It stablishes the character
+    sprites for each action, that the character itself will be running 
+    at first instance, its jump velocity variable that starts with the
+    previously defined constant value but it's set to be changing with the 
+    character fall and the step index responsible for the sprite alternation."""
 
-        if self.protagonist_duck:
+    def __init__(self):
+        
+        self.runImage = RUNNING
+        self.jumpImage = JUMPING
+        self.duckImage = DUCKING
+        
+        self.protagonistRun = True
+        self.image = self.runImage[0]
+
+        self.protagonistDuck = False
+
+        self.protagonistJump = False
+        self.jumpVelocity = self.JUMP_VEL
+
+        self.protagonistRect = self.image.get_rect()
+        self.protagonistRect.x = self.X_POS
+        
+        self.stepIndex = 0
+
+    """ Definition of the update method that will be called constantly
+    to change the character action based on user interaction."""
+        
+    def update(self, userInput):
+        
+        """ If up key is pressed an the character is not jumping already
+        set the character action to jump. Otherwise, if down key is pressed 
+        and the character is not jumping set the character action to duck.
+        Finally, if the character is not jumping or is not pressing the
+        down key, set its action to run."""
+
+        if userInput[pygame.K_UP] and not self.protagonistJump:
+
+            self.protagonistRun = False
+            self.protagonistDuck = False
+            self.protagonistJump = True
+        elif userInput[pygame.K_DOWN] and not self.protagonistJump:
+
+            self.protagonistRun = False
+            self.protagonistDuck = True
+            self.protagonistJump = False
+
+        elif not (self.protagonistJump or userInput [pygame.K_DOWN]):
+
+            self.protagonistRun = True
+            self.protagonistDuck = False
+            self.protagonistJump = False
+
+        # Execute the corresponding method based on the previous check.
+
+        if self.protagonistDuck:
+            
             self.duck()
 
-        if self.protagonist_run:
+        if self.protagonistRun:
+            
             self.run()
 
-        if self.protagonist_jump:
+        if self.protagonistJump:
+           
             self.jump()
 
-        if self.step_index >= 10:
-            self.step_index = 0
-        
-        if userInput[pygame.K_UP] and not self.protagonist_jump:
-            self.protagonist_duck = False
-            self.protagonist_run = False
-            self.protagonist_jump = True
+        # Reset step index.
 
-        elif userInput[pygame.K_DOWN] and not self.protagonist_jump:
-            self.protagonist_duck = True
-            self.protagonist_run = False
-            self.protagonist_jump = False
+        if self.stepIndex >= 10:
 
-        elif not (self.protagonist_jump or userInput [pygame.K_DOWN]):
-            self.protagonist_duck = False
-            self.protagonist_run = True
-            self.protagonist_jump = False
+            self.stepIndex = 0
             
+    """Duck method. Sets the character sprite to the ducking one."""
     def duck(self):
 
-        self.image = self.duck_image[self.step_index // 5]
-        self.protagonist_rect = self.image.get_rect()
-        self.protagonist_rect.x = self.X_POS_DUCK
-        self.protagonist_rect.y = self.Y_POS_DUCK
-        self.step_index += 1
+        self.image = self.duckImage[self.stepIndex // 5]
+        self.protagonistRect = self.image.get_rect()
+        self.protagonistRect.x = self.X_POS_DUCK
+        self.protagonistRect.y = self.Y_POS_DUCK
+        self.stepIndex += 1
         
     def run(self):
 
-        self.image = self.run_image[self.step_index // 5]
-        self.protagonist_rect = self.image.get_rect()
-        self.protagonist_rect.x = self.X_POS
-        self.protagonist_rect.y = self.Y_POS
-        self.step_index += 1
+        self.image = self.runImage[self.stepIndex // 5]
+        self.protagonistRect = self.image.get_rect()
+        self.protagonistRect.x = self.X_POS
+        self.protagonistRect.y = self.Y_POS
+        self.stepIndex += 1
         
     def jump (self): 
 
-        self.image = self.jump_image
+        self.image = self.jumpImage
 
-        if self.protagonist_jump:
-            self.protagonist_rect.y -= self.jump_vel * 4
-            self.jump_vel -= 0.8
+        if self.protagonistJump:
+            self.protagonistRect.y -= self.jumpVelocity * 4
+            self.jumpVelocity -= 0.8
 
-        if self.jump_vel < -self.JUMP_VEL:
-            self.protagonist_jump = False
-            self.jump_vel = self.JUMP_VEL
+        if self.jumpVelocity < -self.JUMP_VEL:
+            self.protagonistJump = False
+            self.jumpVelocity = self.JUMP_VEL
             
     def draw(self):
         
-        SCREEN.blit(self.image, (self.protagonist_rect.x, self.protagonist_rect.y))
+        SCREEN.blit(self.image, (self.protagonistRect.x, self.protagonistRect.y))
 
 class Enemy:
 
@@ -355,7 +399,7 @@ def main():
             obstacle.draw()
             obstacle.update()
 
-            if PLAYER.protagonist_rect.colliderect(obstacle.collideRect):
+            if PLAYER.protagonistRect.colliderect(obstacle.collideRect):
                 pygame.time.delay(500)
                 death_count += 1
                 menu(death_count)
@@ -364,7 +408,7 @@ def main():
             shield.draw()
             shield.update()
 
-            if PLAYER.protagonist_rect.colliderect(shield.collideRect):
+            if PLAYER.protagonistRect.colliderect(shield.collideRect):
                 print("a")
                     
         score()
