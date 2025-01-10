@@ -71,3 +71,7 @@ python main.py
 # Conclusions
 
 <p align="justify">The outcome of this project reinforces the importance of balancing <i>usability</i> and gameplay when developing video games. It ensures that players are motivated to continue playing, without making the game either too monotonous or too difficult. Furthermore, throughout this week, we gained valuable insight into game development in Python and learned about useful libraries to assist in creating such programs.</p>
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/27180b5d-dae7-47dd-9c27-435a4de9d6de" alt = "Cat"/>
+</p>
