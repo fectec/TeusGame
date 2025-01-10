@@ -72,7 +72,7 @@ python main.py
   <img src="https://github.com/user-attachments/assets/4c24f3d9-7f4a-4bce-931b-50adab2184a3" alt = "Peacock"/>
 </p>
 
-# Conclusions
+## Conclusions
 
 <p align="justify">The outcome of this project reinforces the importance of balancing <i>usability</i> and gameplay when developing video games. It ensures that players are motivated to continue playing, without making the game either too monotonous or too difficult. Furthermore, throughout this week, we gained valuable insight into game development in Python and learned about useful libraries to assist in creating such programs.</p>
 
