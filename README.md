@@ -6,6 +6,10 @@
 
 [maxontech/chrome-dinosaur](https://github.com/maxontech/chrome-dinosaur)
 
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/3f3575f0-eab2-40e0-8b84-6891a361c684" alt = "Teus"/>
+</p>
+
 ## Key Differences
 
 <p align="justify">The first noticeable difference is in the graphics. The T-Rex character is replaced by <b>Teus</b>, the mascot of the Tecnológico de Monterrey. The desert background changes to the iconic landscape of the Monterrey campus rector’s office. The cacti, which represent obstacles, are now modeled as animals (deer, peacock, and cat) that roam around the campus.</p> 
