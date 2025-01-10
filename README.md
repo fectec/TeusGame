@@ -1,10 +1,12 @@
-## Teus Game
+# Teus Game
+
+<p align="justify">Main project for the undergrad course "Computational Tools: The Art of Programming", which delves mainly into game development fundamentals including object-oriented programming patterns, event handling, sprite animation, collision detection, game mechanics implementation, user interface design, player engagement strategies, game physics, and playtesting methodologies.</p>
 
 <p align="justify">This game is a free recreation of the popular T-Rex Dinosaur Game, which appears when there is no internet connection while performing searches in Google Chrome. In particular, it is based on the implementation by the user maxontech, created in Python and using the Pygame library for 2D video game development. Below is the link to the base project repository: </p> 
 
 [maxontech/chrome-dinosaur](https://github.com/maxontech/chrome-dinosaur)
 
-# Key Differences
+## Key Differences
 
 <p align="justify">The first noticeable difference is in the graphics. The T-Rex character is replaced by Teus, the mascot of the Tecnológico de Monterrey. The desert background changes to the iconic landscape of the Monterrey campus rector’s office. The cacti, which represent obstacles, are now modeled as animals (deer, peacock, and cat) that roam around the campus.</p> 
 
@@ -14,11 +16,9 @@
 
 <p align="justify">Additionally, several elements were included to improve user satisfaction, such as a score menu, background music, and sound effects. Finally, the hitboxes (collision boxes) for the enemies were improved, making it more intuitive for players when they hit obstacles and lose the game.</p> 
 
-# Development Team
+## Development Team & Timeline
 
 <p align="justify">This project was developed by programmers Juan (<a href="https://github.com/fectec">github.com/fectec</a>) and Joirid (<a href="https://github.com/Joirid">github.com/Joirid</a>). Juan designed the Protagonist, Enemy, and Obstacle classes, which implement the respective entity functionalities. Joirid focused on the Item and Shield classes, programming the unique shield feature for Teus Game.</p> 
-
-# Development Timeline
 
 <p align="justify">The project began on Monday with an analysis of various games we had tried, as well as exploring base codes to expand the game. One of the most promising was the T-Rex Dinosaur Game, which ultimately became the foundation for the final game.</p> 
 
