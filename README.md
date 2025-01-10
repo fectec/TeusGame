@@ -10,6 +10,10 @@
 
 <p align="justify">The first noticeable difference is in the graphics. The T-Rex character is replaced by <b>Teus</b>, the mascot of the Tecnológico de Monterrey. The desert background changes to the iconic landscape of the Monterrey campus rector’s office. The cacti, which represent obstacles, are now modeled as animals (deer, peacock, and cat) that roam around the campus.</p> 
 
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/605179e4-668a-4fdf-a064-25c7146c9970" alt = "Gameplay"/>
+</p>
+
 ## How to Execute (Windows Only)
 
 1. **Install Python**:
