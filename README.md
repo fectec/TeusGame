@@ -1,6 +1,6 @@
 # Teus Game
 
-<p align="justify">Main project for the one-week intensive undergrad course "Computational Tools: The Art of Programming", which delves mainly into game development fundamentals including object-oriented programming patterns, event handling, sprite animation, collision detection, game mechanics implementation, user interface design, player engagement strategies, game physics, and playtesting methodologies.</p>
+<p align="justify">Main project for the one-week intensive undergrad course "<b>Computational Tools: The Art of Programming</b>", which delves mainly into game development fundamentals including object-oriented programming patterns, event handling, sprite animation, collision detection, game mechanics implementation, user interface design, player engagement strategies, game physics, and playtesting methodologies.</p>
 
 <p align="justify">This game is a free recreation of the popular T-Rex Dinosaur Game, which appears when there is no internet connection while performing searches in Google Chrome. In particular, it is based on the implementation by the user maxontech, created in Python and using the Pygame library for 2D video game development. Below is the link to the base project repository: </p> 
 
