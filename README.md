@@ -1,6 +1,8 @@
 ## Teus Game
 
-<p align="justify">This game is a free recreation of the popular T-Rex Dinosaur Game, which appears when there is no internet connection while performing searches in Google Chrome. In particular, it is based on the implementation by the user maxontech, created in Python and using the Pygame library for 2D video game development. Below is the link to the base project repository: [maxontech/chrome-dinosaur](https://github.com/maxontech/chrome-dinosaur)</p> 
+<p align="justify">This game is a free recreation of the popular T-Rex Dinosaur Game, which appears when there is no internet connection while performing searches in Google Chrome. In particular, it is based on the implementation by the user maxontech, created in Python and using the Pygame library for 2D video game development. Below is the link to the base project repository: </p> 
+
+[maxontech/chrome-dinosaur](https://github.com/maxontech/chrome-dinosaur)
 
 # Key Differences
 
