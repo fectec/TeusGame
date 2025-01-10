@@ -1,10 +1,29 @@
-<p align="justify">This game starts as a free recreation of the popular T-Rex Dinosaur Game that appears when there is no internet connection when performing searches in the Google Chrome web browser. In particular, of the implementation carried out by user maxontech, in the Python programming language and through the set of modules oriented to the creation of 2D video games Pygame. Here is a link to the base project repository: https://github.com/maxontech/chrome-dinosaur</p>
-<p align="justify">The first notable difference is found in the graphics. The T-Rex is replaced in the protagonist role by Teus, the Tecnológico de Monterrey mascot. The background changes from a monochromatic desert to the iconic landscape of the Monterrey campus rectory. Finally, the cacti, which represent the obstacles, take the form of animals (deer, peacock and cat) that you can find roaming around this institution's facilities.</p>
-<p align="justify">Mechanically, we are looking at a fairly similar experience. However, given that the original video game stands out for its simple design, it was decided to include a classic power-up, the invincibility shield, to enrich the gameplay, this in favor of avoiding monotony.</p>
-<p align="justify">In addition, other additional elements were included to increase the level of user satisfaction, among them, menu with scoring, music, sound effects. Finally, the hitboxes or collision boxes of the enemies were improved, so that impacting with them and losing would be a more intuitive movement for players.</p>
-<p align="justify">This project involved programmers Juan Manuel Félix Campos (github.com/fectec) and Joirid Juárez Salinas (github.com/Joirid). The first was in charge of designing the Protagonist, Enemy and Obstacle classes that implement the functionalities for the respective entities. Likewise, the second took charge of projecting the Item and Shield classes, programming this unique feature of Teus Game.</p>
-<p align="justify">To be able to carry out this project, on Monday the first thing that was done was to analyze the various video games that we had tested and verify if there were base codes to expand the game. One of the ones that stood out the most was the T-Rex Dinosaur Game due to its broad scope and was finally chosen to be used as the basis for the final video game.</p>
-<p align="justify">After selecting the game, we saw what improvements could be included in the new version that we would develop, which have been specified previously (use the university as a theme: change protagonist, environment and obstacles, as well as include a shield that protects the player for a certain time).</p>
-<p align="justify">The following day, the codes were reviewed in more depth and progress began on coding the game for the part of the main character and its movements in it, still without making changes for the final development of the project. On Wednesday, progress was made in modifying the protagonist, the environment and the obstacles, that is, the dinosaur was changed to Teus, the desert background to the Monterrey campus rectory and the cacti to the animals found on campus. In addition, the music that would be heard throughout the game was added.</p>
-<p align="justify">On Thursday, progress was made on the item functionalities (shield) and some issues about the protagonist's collisions with obstacles. Finally, on Friday, the menu development was concluded and some details with the shield were solved.</p>
-<p align="justify">Thanks to the project carried out, we can conclude that when developing video games it is important to take into account both usability and gameplay, as they will allow those who have the opportunity to play it to feel attracted to continue with that experience and feel sufficiently challenged by it, without making the game tedious due to its difficulty or how long it can become. Furthermore, throughout this week we were able to learn about game development in Python and some libraries that we can rely on when making these types of programs.</p>
+## Teus Game
+
+<p align="justify">This game is a free recreation of the popular T-Rex Dinosaur Game, which appears when there is no internet connection while performing searches in Google Chrome. In particular, it is based on the implementation by the user maxontech, created in Python and using the Pygame library for 2D video game development. Below is the link to the base project repository: [maxontech/chrome-dinosaur](https://github.com/maxontech/chrome-dinosaur)</p> 
+
+# Key Differences
+
+<p align="justify">The first noticeable difference is in the graphics. The T-Rex character is replaced by Teus, the mascot of the Tecnológico de Monterrey. The desert background changes to the iconic landscape of the Monterrey campus rector’s office. The cacti, which represent obstacles, are now modeled as animals (deer, peacock, and cat) that roam around the campus.</p> 
+
+## Gameplay Mechanics
+
+<p align="justify">Mechanically, the game offers a very similar experience to the original. However, to enrich the gameplay and prevent monotony, a classic power-up has been added: the invincibility shield. This provides extra fun for players.</p> 
+
+<p align="justify">Additionally, several elements were included to improve user satisfaction, such as a score menu, background music, and sound effects. Finally, the hitboxes (collision boxes) for the enemies were improved, making it more intuitive for players when they hit obstacles and lose the game.</p> 
+
+# Development Team
+
+<p align="justify">This project was developed by programmers Juan (github.com/fectec) and Joirid (github.com/Joirid). Juan designed the Protagonist, Enemy, and Obstacle classes, which implement the respective entity functionalities. Joirid focused on the Item and Shield classes, programming the unique shield feature for Teus Game.</p> 
+
+# Development Timeline
+
+<p align="justify">The project began on Monday with an analysis of various games we had tried, as well as exploring base codes to expand the game. One of the most promising was the T-Rex Dinosaur Game, which ultimately became the foundation for the final game.</p> 
+
+<p align="justify">After selecting the base game, we identified potential improvements for the new version (theme it around the university, change protagonist, environment, and obstacles, and include a shield to protect the player for a limited time). On Tuesday, we delved deeper into the code, starting to work on the main character and its movements, though without any changes for the final project. By Wednesday, progress had been made in modifying the protagonist, environment, and obstacles—Teus replaced the dinosaur, the desert background was replaced by the rector’s office, and the cacti were replaced by campus animals. Music was also added to enhance the experience.
+
+</p> <p align="justify">Thursday focused on the shield item’s functionality and improving collision detection between the protagonist and obstacles. On Friday, we completed the development of the menu and fine-tuned the shield feature.</p> 
+
+# Conclusions
+
+<p align="justify">The outcome of this project reinforces the importance of balancing usability and gameplay when developing video games. It ensures that players are motivated to continue playing, without making the game either too monotonous or too difficult. Furthermore, throughout this week, we gained valuable insight into game development in Python and learned about useful libraries to assist in creating such programs.</p>
