@@ -54,6 +54,10 @@ python main.py
 
 <p align="justify">Additionally, several elements were included to improve user satisfaction, such as a score menu, background music, and sound effects. Finally, the hitboxes (collision boxes) for the enemies were improved, making it more intuitive for players when they hit obstacles and lose the game.</p> 
 
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/d32a1a1b-1137-4c45-a5bd-9b4cfa074a8e" alt = "Shield"/>
+</p>
+
 ## Development Team & Timeline
 
 <p align="justify">This project was developed by programmers Juan (<a href="https://github.com/fectec">github.com/fectec</a>) and Joirid (<a href="https://github.com/Joirid">github.com/Joirid</a>). Juan designed the Protagonist, Enemy, and Obstacle classes, which implement the respective entity functionalities. Joirid focused on the Item and Shield classes, programming the unique shield feature for Teus Game.</p> 
