@@ -1,18 +1,18 @@
 # Teus Game
 
-<p align="justify">Main project for the one-week intensive undergrad course "<b>Computational Tools: The Art of Programming</b>", which delves mainly into game development fundamentals including object-oriented programming patterns, event handling, sprite animation, collision detection, game mechanics implementation, user interface design, player engagement strategies, game physics, and playtesting methodologies.</p>
+<p align="justify">Main project for the one-week intensive undergrad course "<b>Computational Tools: The Art of Programming</b>", which delves mainly into <i>game development</i> fundamentals including object-oriented programming patterns, event handling, sprite animation, collision detection, game mechanics implementation, user interface design, player engagement strategies, game physics, and playtesting methodologies.</p>
 
-<p align="justify">This game is a free recreation of the popular T-Rex Dinosaur Game, which appears when there is no internet connection while performing searches in Google Chrome. In particular, it is based on the implementation by the user maxontech, created in Python and using the Pygame library for 2D video game development. Below is the link to the base project repository: </p> 
+<p align="justify">This game is a free recreation of the popular <b>T-Rex Dinosaur Game</b>, which appears when there is no internet connection while performing searches in Google Chrome. In particular, it is based on the implementation by the user <i>maxontech</i>, created in <b>Python</b> and using the <i>Pygame</i> library for 2D video game development. Below is the link to the base project repository: </p> 
 
 [maxontech/chrome-dinosaur](https://github.com/maxontech/chrome-dinosaur)
 
 ## Key Differences
 
-<p align="justify">The first noticeable difference is in the graphics. The T-Rex character is replaced by Teus, the mascot of the Tecnológico de Monterrey. The desert background changes to the iconic landscape of the Monterrey campus rector’s office. The cacti, which represent obstacles, are now modeled as animals (deer, peacock, and cat) that roam around the campus.</p> 
+<p align="justify">The first noticeable difference is in the graphics. The T-Rex character is replaced by <b>Teus</b>, the mascot of the Tecnológico de Monterrey. The desert background changes to the iconic landscape of the Monterrey campus rector’s office. The cacti, which represent obstacles, are now modeled as animals (deer, peacock, and cat) that roam around the campus.</p> 
 
 ## Gameplay Mechanics
 
-<p align="justify">Mechanically, the game offers a very similar experience to the original. However, to enrich the gameplay and prevent monotony, a classic power-up has been added: the invincibility shield. This provides extra fun for players.</p> 
+<p align="justify">Mechanically, the game offers a very similar experience to the original. However, to enrich the gameplay and prevent monotony, a classic power-up has been added: the <b>invincibility shield</b>. This provides extra fun for players.</p> 
 
 <p align="justify">Additionally, several elements were included to improve user satisfaction, such as a score menu, background music, and sound effects. Finally, the hitboxes (collision boxes) for the enemies were improved, making it more intuitive for players when they hit obstacles and lose the game.</p> 
 
@@ -28,4 +28,4 @@
 
 # Conclusions
 
-<p align="justify">The outcome of this project reinforces the importance of balancing usability and gameplay when developing video games. It ensures that players are motivated to continue playing, without making the game either too monotonous or too difficult. Furthermore, throughout this week, we gained valuable insight into game development in Python and learned about useful libraries to assist in creating such programs.</p>
+<p align="justify">The outcome of this project reinforces the importance of balancing <i>usability</i> and gameplay when developing video games. It ensures that players are motivated to continue playing, without making the game either too monotonous or too difficult. Furthermore, throughout this week, we gained valuable insight into game development in Python and learned about useful libraries to assist in creating such programs.</p>
