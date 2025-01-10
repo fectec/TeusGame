@@ -64,9 +64,13 @@ python main.py
 
 <p align="justify">The project began on Monday with an analysis of various games we had tried, as well as exploring base codes to expand the game. One of the most promising was the T-Rex Dinosaur Game, which ultimately became the foundation for the final game.</p> 
 
-<p align="justify">After selecting the base game, we identified potential improvements for the new version (theme it around the university, change protagonist, environment, and obstacles, and include a shield to protect the player for a limited time). On Tuesday, we delved deeper into the code, starting to work on the main character and its movements, though without any changes for the final project. By Wednesday, progress had been made in modifying the protagonist, environment, and obstacles—Teus replaced the dinosaur, the desert background was replaced by the rector’s office, and the cacti were replaced by campus animals. Music was also added to enhance the experience.
+<p align="justify">After selecting the base game, we identified potential improvements for the new version (theme it around the university, change protagonist, environment, and obstacles, and include a shield to protect the player for a limited time).</p>
+  
+<p align="justify">On Tuesday, we delved deeper into the code, starting to work on the main character and its movements, though without any changes for the final project.</p>
 
-</p> <p align="justify">Thursday focused on the shield item’s functionality and improving collision detection between the protagonist and obstacles. On Friday, we completed the development of the menu and fine-tuned the shield feature.</p> 
+<p align="justify">By Wednesday, progress had been made in modifying the protagonist, environment, and obstacles—Teus replaced the dinosaur, the desert background was replaced by the rector’s office, and the cacti were replaced by campus animals. Music was also added to enhance the experience.</p> 
+
+<p align="justify">Thursday focused on the shield item’s functionality and improving collision detection between the protagonist and obstacles. On Friday, we completed the development of the menu and fine-tuned the shield feature.</p> 
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/4c24f3d9-7f4a-4bce-931b-50adab2184a3" alt = "Peacock"/>
