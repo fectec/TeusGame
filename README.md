@@ -10,6 +10,36 @@
 
 <p align="justify">The first noticeable difference is in the graphics. The T-Rex character is replaced by <b>Teus</b>, the mascot of the Tecnológico de Monterrey. The desert background changes to the iconic landscape of the Monterrey campus rector’s office. The cacti, which represent obstacles, are now modeled as animals (deer, peacock, and cat) that roam around the campus.</p> 
 
+## How to Execute (Windows Only)
+
+1. **Install Python**:
+
+<p align="justify">Make sure you have Python installed on your system. You can download it from the official website: <a href="https://www.python.org/downloads/">Python Downloads</a>. Ensure you add Python to your system's PATH during installation.</p>
+
+2. **Install Pygame**:
+
+<p align="justify">To install Pygame, open your command prompt and run the following command:</p>
+
+```bash
+pip install pygame
+```
+
+3. **Download the Game Files**:
+
+<p align="justify">Clone or download the repository to your local machine. If using Git, you can run:</p>
+
+```bash
+git clone https://github.com/fectec/dinosaur-2d-game.git
+```
+4. **Run the Game**:
+
+<p align="justify">Open a command prompt in the directory where the game files are located. Execute the game by running:</p>
+
+```bash
+python main.py
+```
+<p align="justify">The game should now launch in a new window. Enjoy playing Teus Game!</p>
+
 ## Gameplay Mechanics
 
 <p align="justify">Mechanically, the game offers a very similar experience to the original. However, to enrich the gameplay and prevent monotony, a classic power-up has been added: the <b>invincibility shield</b>. This provides extra fun for players.</p> 
