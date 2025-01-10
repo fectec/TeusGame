@@ -16,7 +16,7 @@
 
 # Development Team
 
-<p align="justify">This project was developed by programmers Juan (github.com/fectec) and Joirid (github.com/Joirid). Juan designed the Protagonist, Enemy, and Obstacle classes, which implement the respective entity functionalities. Joirid focused on the Item and Shield classes, programming the unique shield feature for Teus Game.</p> 
+<p align="justify">This project was developed by programmers Juan (<a href="https://github.com/fectec">github.com/fectec</a>) and Joirid (<a href="https://github.com/Joirid">github.com/Joirid</a>). Juan designed the Protagonist, Enemy, and Obstacle classes, which implement the respective entity functionalities. Joirid focused on the Item and Shield classes, programming the unique shield feature for Teus Game.</p> 
 
 # Development Timeline
 
