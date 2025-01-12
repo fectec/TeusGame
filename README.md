@@ -37,7 +37,7 @@ pip install pygame
 <p align="justify">Clone or download the repository to your local machine. If using Git, you can run:</p>
 
 ```bash
-git clone https://github.com/fectec/dinosaur-2d-game.git
+git clone https://github.com/fectec/TeusGame.git
 ```
 4. **Run the Game**:
 
